@@ -5,32 +5,28 @@ import java.awt.*;
 public class Client {
 
     public static void main(String[] args) {
-        CurentWeather curentWeather = new CurentWeather();
+        CurrentWeather currentWeather = new CurrentWeather();
 
         JFrame myWindow = new JFrame("What weather is today?");
         myWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Font helvetica = new Font("Helvetica", Font.BOLD, 40);
+
 
         JTextField cityField = new JTextField();
-        cityField.setFont(helvetica);
-        JLabel tempLabel = new JLabel();
-
-        tempLabel.setFont(helvetica);
-
+        cityField.setHorizontalAlignment(JLabel.CENTER);
         JButton button = new JButton("Get now!");
-
-        button.setFont(helvetica);
-
-
+        JLabel tempLabel = new JLabel();
+        tempLabel.setVerticalAlignment(JLabel.CENTER);
+        tempLabel.setHorizontalAlignment(JLabel.CENTER);
         button.addActionListener(e -> {
             String city = cityField.getText();
-            String temp = curentWeather.getToClient(city);
+            String temp = currentWeather.getToClient(city);
+            temp =  (!temp.equals("Error!") )? temp + " C" : temp;
             tempLabel.setText(temp);
+
         });
 
         JPanel contents = new JPanel(new GridLayout(3,0));
         contents.add(cityField);
-
         contents.add(button);
         contents.add(tempLabel);
         myWindow.add(contents);

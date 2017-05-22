@@ -9,21 +9,21 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 
-public class CurentWeather {
+public class CurrentWeather {
 
 
-    private static final String API_KEY = "da45a437794f46095faab5cb1438bb4c";
+    private static final String APPID = "da45a437794f46095faab5cb1438bb4c";
     CurrentWeatherService currentWeatherService;
     Retrofit retrofit;
 
-    CurentWeather() {
+    CurrentWeather() {
         retrofit = createRetrofit();
         currentWeatherService= retrofit.create(CurrentWeatherService.class);
     }
 
 
   public String getToClient(String city){
-        CompletableFuture<Response<Data>> responseBody = currentWeatherService.getWeather( city, API_KEY, "");
+        CompletableFuture<Response<Data>> responseBody = currentWeatherService.getWeather( city, APPID, "");
         final String[] result = new String[1];
         responseBody.thenAccept(response -> {
             if (!response.isSuccessful()) {
