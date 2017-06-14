@@ -20,7 +20,7 @@ public class Client {
         button.addActionListener(e -> {
             String city = cityField.getText();
             String temp = currentWeather.getToClient(city);
-            temp =  (!temp.equals("Error!") )? temp + " C" : temp;
+            temp =  (!temp.equals("Error!") )? temp + " " : temp;
             tempLabel.setText(temp);
 
         });

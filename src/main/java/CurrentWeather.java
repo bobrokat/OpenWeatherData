@@ -26,12 +26,11 @@ public class CurrentWeather {
         CompletableFuture<Response<Data>> responseBody = currentWeatherService.getWeather( city, APPID, "");
         final String[] result = new String[1];
         responseBody.thenAccept(response -> {
-            if (!response.isSuccessful()) {
-                result[0] = "Error!";
-            } else {
+            if (response.isSuccessful()) {
                 Data data =  response.body();
-
-               result[0] = data.parse().toString();
+                result[0] = data.parse();
+            } else {
+                result[0] = "Error!";
             }
         }).join();
         return result[0];

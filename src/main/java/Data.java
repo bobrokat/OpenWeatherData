@@ -14,19 +14,22 @@ public class Data {
     @JsonProperty("main")
     public Object jsonStr;
 
-    public Data(String jsonStr) {
-        this.jsonStr = jsonStr;
-    }
+    @JsonProperty("name")
+    public String name;
 
-    public Double parse(){
+
+    public String parse(){
         JsonParser parser = new JsonParser();
-        System.out.println(jsonStr.toString());
         JsonElement jsonElement = parser.parse(jsonStr.toString());
+
+
         JsonObject rootObject = jsonElement.getAsJsonObject();
         String temp = rootObject.get("temp").getAsString();
+
         Double tempDouble = Double.parseDouble(temp);
         tempDouble = Double.valueOf(Math.round(tempDouble - 273));
-        return tempDouble;
+        String result = tempDouble + " " + name;
+        return result;
     }
 
 
